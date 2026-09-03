@@ -27,89 +27,34 @@
         body { font-family: 'Inter', sans-serif; }
         .font-serif-sacred { font-family: 'Playfair Display', serif; }
 
-        /* PLANO DE FUNDO CELESTIAL ANIMADO */
-        .fundo-celestial {
+        /* PLANO DE FUNDO DE VÍDEO REALISTA (Nuvens e Raios de Sol) */
+        .video-fundo-container {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
+            width: 100vw;
             height: 100vh;
-            background: linear-gradient(180deg, #70a1ff 0%, #dae7ff 50%, #ffeaa7 100%);
-            z-index: -2;
+            z-index: -3;
             overflow: hidden;
-        }
-
-        /* Efeito de Raios de Luz Divina (Glow Angelical) */
-        .fundo-celestial::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.6) 0%, rgba(255,214,103,0.2) 50%, transparent 70%);
-            transform-origin: center;
-            animation: pulsarLuz 8s ease-in-out infinite alternate;
             pointer-events: none;
         }
 
-        /* CAMADA DE NUVENS ANIMADAS */
-        .nuvens-container {
+        .video-fundo-container video {
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+        }
+
+        /* Camada translúcida escura por cima do vídeo para destacar os textos brancos e dourados */
+        .overlay-divino {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100vh;
-            z-index: -1;
+            background: linear-gradient(180deg, rgba(15, 14, 19, 0.75) 0%, rgba(20, 18, 30, 0.6) 50%, rgba(15, 14, 19, 0.85) 100%);
+            z-index: -2;
             pointer-events: none;
-            opacity: 0.65;
-        }
-
-        .nuvem {
-            position: absolute;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="white"><path d="M0 384c0 35.3 28.7 64 64 64h384c35.3 0 64-28.7 64-64c0-31.7-23-58.1-53.3-63.3C453.7 274.6 416 234 368 234c-12.2 0-23.7 2.7-34 7.7C312.4 194.1 261 160 202.7 160c-66.2 0-121.7 47.1-134.4 110.1C29.4 278.3 0 327.7 0 384z"/></svg>');
-            background-repeat: no-repeat;
-            background-size: contain;
-            animation: moverNuvens linear infinite;
-        }
-
-        .nuvem.tipo1 {
-            width: 400px;
-            height: 250px;
-            top: 10%;
-            left: -400px;
-            animation-duration: 45s;
-            opacity: 0.5;
-        }
-
-        .nuvem.tipo2 {
-            width: 600px;
-            height: 350px;
-            top: 45%;
-            left: -600px;
-            animation-duration: 32s;
-            opacity: 0.7;
-        }
-
-        .nuvem.tipo3 {
-            width: 300px;
-            height: 200px;
-            top: 25%;
-            left: -300px;
-            animation-duration: 22s;
-            animation-delay: 8s;
-            opacity: 0.4;
-        }
-
-        /* ANIMAÇÕES */
-        @keyframes moverNuvens {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(calc(100vw + 600px)); }
-        }
-
-        @keyframes pulsarLuz {
-            0% { transform: scale(0.9) rotate(0deg); opacity: 0.7; }
-            100% { transform: scale(1.1) rotate(10deg); opacity: 1; }
         }
 
         /* Brilho Dourado Sagrado no Hover dos Cards */
@@ -133,13 +78,14 @@
 </head>
 <body class="text-gray-200 min-h-screen flex flex-col selection:bg-gold selection:text-sacredbg relative overflow-x-hidden">
 
-    <!-- PLANO DE FUNDO CELESTIAL ANIMADO -->
-    <div class="fundo-celestial"></div>
-    <div class="nuvens-container">
-        <div class="nuvem tipo1"></div>
-        <div class="nuvem tipo2"></div>
-        <div class="nuvem tipo3"></div>
+    <!-- VÍDEO DE FUNDO REALISTA (Atualizado com o novo ID do Google Drive) -->
+    <div class="video-fundo-container">
+        <video autoplay muted loop playsinline>
+            <source src="https://drive.google.com/uc?export=download&id=1nv4JciglK0hPv0pClev1TOFGzHgnSrVL" type="video/mp4">
+            Seu navegador não suporta vídeos de fundo.
+        </video>
     </div>
+    <div class="overlay-divino"></div>
 
     <!-- TELA DE CARREGAMENTO (SPLASH SCREEN) -->
     <div id="preloader" class="fixed inset-0 z-50 bg-[#0a090d] flex flex-col items-center justify-center transition-opacity duration-700">
@@ -154,19 +100,20 @@
         </div>
     </div>
 
-    <!-- BARRA SUPERIOR DISCRETA COM O MINI PLAYER DO YOUTUBE -->
-    <div class="bg-sacredbg/90 backdrop-blur border-b border-gold/20 text-xs py-1.5 px-4 z-40">
-        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
+    <!-- BARRA SUPERIOR COM O MINI PLAYER DO YOUTUBE (TAMANHO AMPLIADO) -->
+    <div class="bg-sacredbg/95 backdrop-blur border-b border-gold/20 text-xs py-2 px-4 z-40">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3">
             <div class="flex items-center gap-2 text-gold font-medium">
                 <i data-lucide="tv" class="w-4 h-4 animate-pulse"></i>
                 <span>TV Canção Nova ao Vivo (Clique para ativar o som):</span>
             </div>
-            <div class="w-full sm:w-72 h-[40px] overflow-hidden rounded border border-gold/30 bg-black/40 relative">
+            <!-- Mini Player ampliado -->
+            <div class="w-full sm:w-[360px] h-[70px] overflow-hidden rounded-lg border border-gold/40 bg-black/60 relative shadow-md">
                 <iframe 
                     src="https://www.youtube.com/embed/nv6UjvAcMj0?autoplay=1&mute=1&enablejsapi=1&controls=1" 
                     title="YouTube live player" 
                     frameborder="0" 
-                    class="w-full h-[150%] -top-[25%] absolute left-0"
+                    class="w-full h-[180%] -top-[40%] absolute left-0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                     allowfullscreen>
                 </iframe>
@@ -181,7 +128,7 @@
                 <img src="logo_sagradafe.png" alt="SagradaFé Arte e Devoção" class="h-14 w-auto object-contain transition transform hover:scale-105 duration-300">
             </a>
 
-            <!-- NOVO MENU ATUALIZADO -->
+            <!-- MENU ATUALIZADO -->
             <nav class="hidden xl:flex items-center gap-6 text-xs font-medium tracking-wide text-gray-300">
                 <a href="#inicio" class="hover:text-gold transition duration-300">Início</a>
                 <a href="#pecas" class="hover:text-gold transition duration-300">Imagens</a>
@@ -250,7 +197,7 @@
     </section>
 
     <!-- SEÇÃO DE PEÇAS / DESTAQUES COM ESTÁTUAS DE JESUS, JOSÉ E MARIA -->
-    <section id="pecas" class="max-w-7xl mx-auto px-4 py-16 w-full border-t border-gold/20 bg-sacredbg/60 backdrop-blur-md rounded-3xl my-8">
+    <section id="pecas" class="max-w-7xl mx-auto px-4 py-16 w-full border-t border-gold/20 bg-sacredbg/80 backdrop-blur-md rounded-3xl my-8 shadow-2xl">
         <div class="text-center max-w-xl mx-auto mb-14">
             <span class="text-gold text-xs font-bold uppercase tracking-widest">Coleção Sagrada</span>
             <h2 class="font-serif-sacred text-3xl md:text-4xl font-bold text-white mt-2">Estátuas e Peças em Destaque</h2>
@@ -323,7 +270,7 @@
     </section>
 
     <!-- SOBRE / NOSSA MISSÃO -->
-    <section id="sobre" class="bg-sacredbg/80 backdrop-blur-md border-y border-gold/20 py-16 my-8">
+    <section id="sobre" class="bg-sacredbg/90 backdrop-blur-md border-y border-gold/20 py-16 my-8 shadow-xl">
         <div class="max-w-5xl mx-auto px-4 text-center">
             <span class="text-gold text-xs font-bold uppercase tracking-widest">Tradição e Cuidado</span>
             <h2 class="font-serif-sacred text-3xl font-bold text-white mt-2 mb-6">A Arte a Serviço da Fé</h2>
