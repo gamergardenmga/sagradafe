@@ -26,29 +26,83 @@
     <style>
         body { font-family: 'Inter', sans-serif; }
         .font-serif-sacred { font-family: 'Playfair Display', serif; }
+
+        /* Animação de Nuvens e Luz de Fundo */
+        @keyframes floatClouds {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .heavenly-bg {
+            background: linear-gradient(135deg, #0f0e13 0%, #1a1528 50%, #0f0e13 100%);
+            background-size: 200% 200%;
+            animation: floatClouds 15s ease infinite;
+        }
+
+        /* Brilho Dourado Sagrado no Hover */
+        .sacred-glow:hover {
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.4);
+            border-color: rgba(212, 175, 55, 0.8);
+            transform: translateY(-3px);
+            transition: all 0.4s ease;
+        }
+
+        /* Animação da Barra de Carregamento */
+        @keyframes loadBar {
+            0% { width: 0%; }
+            50% { width: 70%; }
+            100% { width: 100%; }
+        }
+        .animate-load {
+            animation: loadBar 2s ease-in-out forwards;
+        }
     </style>
 </head>
-<body class="bg-sacredbg text-gray-200 min-h-screen flex flex-col selection:bg-gold selection:text-sacredbg">
+<body class="heavenly-bg text-gray-200 min-h-screen flex flex-col selection:bg-gold selection:text-sacredbg relative overflow-x-hidden">
+
+    <!-- TELA DE CARREGAMENTO (SPLASH SCREEN) -->
+    <div id="preloader" class="fixed inset-0 z-50 bg-[#0a090d] flex flex-col items-center justify-center transition-opacity duration-700">
+        <div class="text-center flex flex-col items-center max-w-sm px-4">
+            <img src="logo_sagradafe.png" alt="SagradaFé" class="h-20 w-auto mb-6 animate-pulse">
+            <h2 class="font-serif-sacred text-gold text-xl font-bold tracking-widest mb-2">SAGRADAFÉ</h2>
+            <p class="text-xs text-gray-400 tracking-wider uppercase mb-8">Abençoando o seu lar... Carregando arte e devoção</p>
+            
+            <div class="w-48 h-1 bg-gray-800 rounded-full overflow-hidden border border-gold/20">
+                <div class="h-full bg-gold animate-load"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BARRA SUPERIOR DISCRETA COM O PLAYER DA RÁDIO COLMEIA -->
+    <div class="bg-sacredbg border-b border-gold/20 text-xs py-1.5 px-4 z-40">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
+            <div class="flex items-center gap-2 text-gold font-medium">
+                <i data-lucide="radio" class="w-4 h-4 animate-pulse"></i>
+                <span>Ouvi a Rádio Colmeia ao Vivo:</span>
+            </div>
+            <!-- Player embutido de forma compacta e sutil -->
+            <div class="w-full sm:w-72 h-[38px] overflow-hidden rounded border border-gold/30 bg-black/40">
+                <iframe src="https://players.virtualcast.live/audio/colmeiamaringa" frameborder="0" width="100%" height="45" class="scale-95 origin-top-left"></iframe>
+            </div>
+        </div>
+    </div>
 
     <!-- CABEÇALHO -->
-    <header class="sticky top-0 z-50 bg-sacredbg/95 backdrop-blur-md border-b border-gold/20">
+    <header class="sticky top-0 z-30 bg-sacredbg/95 backdrop-blur-md border-b border-gold/20 shadow-lg">
         <div class="max-w-7xl mx-auto px-4 h-24 flex items-center justify-between gap-6">
-            <!-- Logotipo Oficial da SagradaFé -->
             <a href="#" class="flex items-center">
-                <img src="logo_sagradafe.png" alt="SagradaFé Arte e Devoção" class="h-14 w-auto object-contain">
+                <img src="logo_sagradafe.png" alt="SagradaFé Arte e Devoção" class="h-14 w-auto object-contain transition transform hover:scale-105 duration-300">
             </a>
 
-            <!-- Menu de Navegação Desktop -->
             <nav class="hidden md:flex items-center gap-8 text-sm font-medium tracking-wide text-gray-300">
-                <a href="#inicio" class="hover:text-gold transition">Início</a>
-                <a href="#pecas" class="hover:text-gold transition">Peças Sacras</a>
-                <a href="#sobre" class="hover:text-gold transition">Nossa Missão</a>
-                <a href="#contato" class="hover:text-gold transition">Contato</a>
+                <a href="#inicio" class="hover:text-gold transition duration-300">Início</a>
+                <a href="#pecas" class="hover:text-gold transition duration-300">Peças Sacras</a>
+                <a href="#sobre" class="hover:text-gold transition duration-300">Nossa Missão</a>
+                <a href="#contato" class="hover:text-gold transition duration-300">Contato</a>
             </nav>
 
-            <!-- Botão de WhatsApp Topo -->
             <div>
-                <a href="https://wa.me/5544998594898?text=Olá!%20Vim%20pelo%20site%20sagradafe.com.br%20e%20gostaria%20de%20fazer%20uma%20encomenda." target="_blank" rel="noopener noreferrer" class="hidden sm:flex items-center gap-2 bg-gold hover:bg-goldhover text-sacredbg font-bold px-6 py-2.5 rounded-full text-xs uppercase tracking-wider transition shadow-lg shadow-gold/10">
+                <a href="https://wa.me/5544998594898?text=Olá!%20Vim%20pelo%20site%20sagradafe.com.br%20e%20gostaria%20de%20fazer%20uma%20encomenda." target="_blank" rel="noopener noreferrer" class="hidden sm:flex items-center gap-2 bg-gold hover:bg-goldhover text-sacredbg font-bold px-6 py-2.5 rounded-full text-xs uppercase tracking-wider transition shadow-lg shadow-gold/20 transform hover:scale-105">
                     <i data-lucide="message-circle" class="w-4 h-4"></i> Atendimento via WhatsApp
                 </a>
             </div>
@@ -57,10 +111,9 @@
 
     <!-- SEÇÃO HERO (PRINCIPAL) -->
     <section id="inicio" class="max-w-7xl mx-auto px-4 py-16 md:py-24 w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-        <!-- Texto Esquerda -->
         <div class="lg:col-span-7 flex flex-col items-start">
-            <div class="inline-flex items-center gap-2 bg-gold/10 border border-gold/30 text-gold px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest mb-6">
-                <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> sagradafe.com.br
+            <div class="inline-flex items-center gap-2 bg-gold/10 border border-gold/30 text-gold px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest mb-6 shadow-sm">
+                <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> Entregas em Maringá e Região
             </div>
             
             <h1 class="font-serif-sacred text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-wide leading-[1.15] mb-6">
@@ -68,110 +121,107 @@
             </h1>
 
             <p class="text-gray-400 text-base md:text-lg mb-8 leading-relaxed font-light">
-                Imagens, oratórios e elementos devocionais impressos em 3D e finalizados artesanalmente com pintura fina e delicada. Leve mais beleza, significado e fé para o seu lar.
+                Estátuas sagradas, oratórios e elementos devocionais impressos em 3D e finalizados artesanalmente com pintura fina e delicada. Leve mais beleza, significado e fé para o seu lar.
             </p>
 
             <div class="flex flex-wrap gap-4 w-full sm:w-auto">
-                <a href="https://wa.me/5544998594898?text=Olá!%20Gostaria%20de%20encomendar%20uma%20peça%20sacra%20vista%20no%20site." target="_blank" rel="noopener noreferrer" class="flex-1 sm:flex-initial flex items-center justify-center gap-2 bg-gold hover:bg-goldhover text-sacredbg font-bold px-8 py-4 rounded-xl transition shadow-xl shadow-gold/10 uppercase tracking-wider text-xs">
+                <a href="https://wa.me/5544998594898?text=Olá!%20Gostaria%20de%20encomendar%20uma%20peça%20sacra%20vista%20no%20site." target="_blank" rel="noopener noreferrer" class="flex-1 sm:flex-initial flex items-center justify-center gap-2 bg-gold hover:bg-goldhover text-sacredbg font-bold px-8 py-4 rounded-xl transition shadow-xl shadow-gold/20 uppercase tracking-wider text-xs transform hover:scale-105">
                     <i data-lucide="message-circle" class="w-4 h-4"></i> Encomendar Peça
                 </a>
-                <a href="#pecas" class="flex-1 sm:flex-initial flex items-center justify-center gap-2 bg-sacredcard border border-gold/30 hover:border-gold text-white font-medium px-6 py-4 rounded-xl transition text-xs uppercase tracking-wider">
+                <a href="#pecas" class="flex-1 sm:flex-initial flex items-center justify-center gap-2 bg-sacredcard border border-gold/30 hover:border-gold text-white font-medium px-6 py-4 rounded-xl transition text-xs uppercase tracking-wider hover:bg-gold/10">
                     Conhecer Coleção
                 </a>
             </div>
         </div>
 
-        <!-- Vitrine Visual / Galeria Direita -->
         <div class="lg:col-span-5 relative">
-            <div class="bg-sacredcard border border-gold/20 rounded-3xl p-4 shadow-2xl relative overflow-hidden group">
+            <div class="bg-sacredcard border border-gold/30 rounded-3xl p-4 shadow-2xl relative overflow-hidden group sacred-glow">
                 <div class="grid grid-cols-2 gap-3 h-[420px]">
                     <div class="rounded-2xl overflow-hidden relative bg-gray-900 border border-gold/10">
-                        <img src="https://images.unsplash.com/photo-1543165365-0723acb05f2c?auto=format&fit=crop&w=600&q=80" alt="Arte Sacra Detalhada" class="w-full h-full object-cover group-hover:scale-105 transition duration-700 opacity-90">
+                        <img src="https://lh3.googleusercontent.com/d/1vTWdKQe4FzvAIf4PPzGtws72z1pEmwTX" alt="Sagrado Coração de Jesus" class="w-full h-full object-cover group-hover:scale-110 transition duration-700 opacity-90">
                     </div>
                     <div class="rounded-2xl overflow-hidden relative bg-gray-900 border border-gold/10">
-                        <img src="https://images.unsplash.com/photo-1548625361-1607386d389e?auto=format&fit=crop&w=600&q=80" alt="Decoração Devocional" class="w-full h-full object-cover group-hover:scale-105 transition duration-700 opacity-90">
+                        <img src="https://images.unsplash.com/photo-1548625361-1607386d389e?auto=format&fit=crop&w=600&q=80" alt="Decoração Devocional" class="w-full h-full object-cover group-hover:scale-110 transition duration-700 opacity-90">
                     </div>
                 </div>
-                <!-- Mini Badge Flutuante -->
-                <div class="absolute bottom-6 left-6 right-6 bg-sacredbg/95 backdrop-blur-md border border-gold/30 p-4 rounded-2xl flex items-center gap-3 shadow-xl">
+                <div class="absolute bottom-6 left-6 right-6 bg-sacredbg/95 backdrop-blur-md border border-gold/40 p-4 rounded-2xl flex items-center gap-3 shadow-xl">
                     <span class="bg-gold/10 border border-gold/30 text-gold p-2.5 rounded-xl">
                         <i data-lucide="heart-handshake" class="w-5 h-5"></i>
                     </span>
                     <div>
                         <p class="text-xs font-bold text-white uppercase tracking-wider">SagradaFé</p>
-                        <p class="text-[11px] text-gray-400">Arte e Devoção para o seu lar</p>
+                        <p class="text-[11px] text-gray-400">Atendendo Maringá e Região</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SEÇÃO DE PEÇAS / DESTAQUES -->
+    <!-- SEÇÃO DE PEÇAS / DESTAQUES COM ESTÁTUAS DE JESUS, JOSÉ E MARIA -->
     <section id="pecas" class="max-w-7xl mx-auto px-4 py-16 w-full border-t border-gold/10">
         <div class="text-center max-w-xl mx-auto mb-14">
             <span class="text-gold text-xs font-bold uppercase tracking-widest">Coleção Sagrada</span>
-            <h2 class="font-serif-sacred text-3xl md:text-4xl font-bold text-white mt-2">Peças em Destaque</h2>
+            <h2 class="font-serif-sacred text-3xl md:text-4xl font-bold text-white mt-2">Estátuas e Peças em Destaque</h2>
             <div class="w-16 h-0.5 bg-gold/50 mx-auto mt-4"></div>
         </div>
 
-        <!-- Grid de Produtos com Botão Direto para o WhatsApp por Categoria -->
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
             
-            <!-- Produto 1 -->
-            <div class="bg-sacredcard border border-gold/20 rounded-2xl overflow-hidden flex flex-col justify-between group hover:border-gold/60 transition duration-300">
+            <!-- Produto 1: Sagrado Coração de Jesus -->
+            <div class="bg-sacredcard border border-gold/20 rounded-2xl overflow-hidden flex flex-col justify-between group sacred-glow transition duration-300">
                 <div>
                     <div class="h-64 bg-gray-900 overflow-hidden relative">
-                        <span class="absolute top-3 left-3 bg-gold text-sacredbg text-[10px] font-bold px-2.5 py-1 rounded uppercase tracking-wider">Pintura Fina</span>
-                        <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=600&q=80" alt="Imagem Sacra" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 opacity-90">
+                        <span class="absolute top-3 left-3 bg-gold text-sacredbg text-[10px] font-bold px-2.5 py-1 rounded uppercase tracking-wider shadow">Pintura Fina</span>
+                        <img src="https://lh3.googleusercontent.com/d/1vTWdKQe4FzvAIf4PPzGtws72z1pEmwTX" alt="Sagrado Coração de Jesus" class="w-full h-full object-cover group-hover:scale-110 transition duration-500 opacity-90">
                     </div>
                     <div class="p-6">
-                        <h3 class="font-serif-sacred font-bold text-white text-lg mb-2">Imagens de Santos e Santas</h3>
-                        <p class="text-gray-400 text-xs mb-4 leading-relaxed">Modelagem detalhada com traços tradicionais e pintura artística manual.</p>
+                        <h3 class="font-serif-sacred font-bold text-white text-lg mb-2">Sagrado Coração de Jesus</h3>
+                        <p class="text-gray-400 text-xs mb-4 leading-relaxed">Estátua sacra com riqueza de detalhes e pintura artística manual inspirada na fé.</p>
                         <div class="text-gold font-bold text-sm tracking-wider uppercase">Sob Encomenda</div>
                     </div>
                 </div>
                 <div class="p-6 pt-0">
-                    <a href="https://wa.me/5544998594898?text=Olá!%20Gostaria%20de%20solicitar%20um%20orçamento%20para%20a%20categoria:%20Imagens%20de%20Santos%20e%20Santas." target="_blank" rel="noopener noreferrer" class="w-full bg-sacredbg border border-gold/30 hover:bg-gold hover:text-sacredbg text-gold font-semibold py-3 rounded-xl flex items-center justify-center gap-2 transition text-xs uppercase tracking-wider">
+                    <a href="https://wa.me/5544998594898?text=Olá!%20Gostaria%20de%20solicitar%20um%20orçamento%20para%20a%20estátua:%20Sagrado%20Coração%20de%20Jesus." target="_blank" rel="noopener noreferrer" class="w-full bg-sacredbg border border-gold/30 hover:bg-gold hover:text-sacredbg text-gold font-semibold py-3 rounded-xl flex items-center justify-center gap-2 transition text-xs uppercase tracking-wider">
                         <i data-lucide="message-circle" class="w-4 h-4"></i> Solicitar Orçamento
                     </a>
                 </div>
             </div>
 
-            <!-- Produto 2 -->
-            <div class="bg-sacredcard border border-gold/20 rounded-2xl overflow-hidden flex flex-col justify-between group hover:border-gold/60 transition duration-300">
+            <!-- Produto 2: São José -->
+            <div class="bg-sacredcard border border-gold/20 rounded-2xl overflow-hidden flex flex-col justify-between group sacred-glow transition duration-300">
                 <div>
                     <div class="h-64 bg-gray-900 overflow-hidden relative">
-                        <span class="absolute top-3 left-3 bg-gold text-sacredbg text-[10px] font-bold px-2.5 py-1 rounded uppercase tracking-wider">Exclusivo</span>
-                        <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=600&q=80" alt="Oratório e Painéis" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 opacity-90">
+                        <span class="absolute top-3 left-3 bg-gold text-sacredbg text-[10px] font-bold px-2.5 py-1 rounded uppercase tracking-wider shadow">Exclusivo</span>
+                        <img src="https://images.unsplash.com/photo-1543165365-0723acb05f2c?auto=format&fit=crop&w=600&q=80" alt="São José" class="w-full h-full object-cover group-hover:scale-110 transition duration-500 opacity-90">
                     </div>
                     <div class="p-6">
-                        <h3 class="font-serif-sacred font-bold text-white text-lg mb-2">Oratórios & Altares Residenciais</h3>
-                        <p class="text-gray-400 text-xs mb-4 leading-relaxed">Espaços sagrados criados para o seu momento de oração diária em família.</p>
+                        <h3 class="font-serif-sacred font-bold text-white text-lg mb-2">Estátua de São José</h3>
+                        <p class="text-gray-400 text-xs mb-4 leading-relaxed">Representação fiel do patrono dos lares, modelada em 3D e decorada à mão.</p>
                         <div class="text-gold font-bold text-sm tracking-wider uppercase">Sob Encomenda</div>
                     </div>
                 </div>
                 <div class="p-6 pt-0">
-                    <a href="https://wa.me/5544998594898?text=Olá!%20Gostaria%20de%20solicitar%20um%20orçamento%20para%20a%20categoria:%20Oratórios%20e%20Altares%20Residenciais." target="_blank" rel="noopener noreferrer" class="w-full bg-sacredbg border border-gold/30 hover:bg-gold hover:text-sacredbg text-gold font-semibold py-3 rounded-xl flex items-center justify-center gap-2 transition text-xs uppercase tracking-wider">
+                    <a href="https://wa.me/5544998594898?text=Olá!%20Gostaria%20de%20solicitar%20um%20orçamento%20para%20a%20estátua:%20São%20José." target="_blank" rel="noopener noreferrer" class="w-full bg-sacredbg border border-gold/30 hover:bg-gold hover:text-sacredbg text-gold font-semibold py-3 rounded-xl flex items-center justify-center gap-2 transition text-xs uppercase tracking-wider">
                         <i data-lucide="message-circle" class="w-4 h-4"></i> Solicitar Orçamento
                     </a>
                 </div>
             </div>
 
-            <!-- Produto 3 -->
-            <div class="bg-sacredcard border border-gold/20 rounded-2xl overflow-hidden flex flex-col justify-between group hover:border-gold/60 transition duration-300">
+            <!-- Produto 3: Nossa Senhora (Maria) -->
+            <div class="bg-sacredcard border border-gold/20 rounded-2xl overflow-hidden flex flex-col justify-between group sacred-glow transition duration-300">
                 <div>
                     <div class="h-64 bg-gray-900 overflow-hidden relative">
-                        <span class="absolute top-3 left-3 bg-gold text-sacredbg text-[10px] font-bold px-2.5 py-1 rounded uppercase tracking-wider">Devocional</span>
-                        <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=600&q=80" alt="Crucifixos e Símbolos" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 opacity-90">
+                        <span class="absolute top-3 left-3 bg-gold text-sacredbg text-[10px] font-bold px-2.5 py-1 rounded uppercase tracking-wider shadow">Devocional</span>
+                        <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=600&q=80" alt="Nossa Senhora" class="w-full h-full object-cover group-hover:scale-110 transition duration-500 opacity-90">
                     </div>
                     <div class="p-6">
-                        <h3 class="font-serif-sacred font-bold text-white text-lg mb-2">Crucifixos & Símbolos Sacros</h3>
-                        <p class="text-gray-400 text-xs mb-4 leading-relaxed">Detalhes abençoados para proteger e decorar portas, paredes e ambientes.</p>
+                        <h3 class="font-serif-sacred font-bold text-white text-lg mb-2">Estátua de Nossa Senhora (Maria)</h3>
+                        <p class="text-gray-400 text-xs mb-4 leading-relaxed">Imagem devocional delicada com acabamento refinado para abençoar o seu ambiente.</p>
                         <div class="text-gold font-bold text-sm tracking-wider uppercase">Sob Encomenda</div>
                     </div>
                 </div>
                 <div class="p-6 pt-0">
-                    <a href="https://wa.me/5544998594898?text=Olá!%20Gostaria%20de%20solicitar%20um%20orçamento%20para%20a%20categoria:%20Crucifixos%20e%20Símbolos%20Sacros." target="_blank" rel="noopener noreferrer" class="w-full bg-sacredbg border border-gold/30 hover:bg-gold hover:text-sacredbg text-gold font-semibold py-3 rounded-xl flex items-center justify-center gap-2 transition text-xs uppercase tracking-wider">
+                    <a href="https://wa.me/5544998594898?text=Olá!%20Gostaria%20de%20solicitar%20um%20orçamento%20para%20a%20estátua:%20Nossa%20Senhora%20(Maria)." target="_blank" rel="noopener noreferrer" class="w-full bg-sacredbg border border-gold/30 hover:bg-gold hover:text-sacredbg text-gold font-semibold py-3 rounded-xl flex items-center justify-center gap-2 transition text-xs uppercase tracking-wider">
                         <i data-lucide="message-circle" class="w-4 h-4"></i> Solicitar Orçamento
                     </a>
                 </div>
@@ -186,27 +236,47 @@
             <span class="text-gold text-xs font-bold uppercase tracking-widest">Tradição e Cuidado</span>
             <h2 class="font-serif-sacred text-3xl font-bold text-white mt-2 mb-6">A Arte a Serviço da Fé</h2>
             <p class="text-gray-300 text-base md:text-lg leading-relaxed font-light max-w-3xl mx-auto">
-                Cada imagem e ornamento produzido pela <strong class="text-gold font-normal">SagradaFé</strong> é tratado com absoluto respeito e reverência. Unimos a precisão da tecnologia 3D à sensibilidade do trabalho manual para entregar peças que alimentam a espiritualidade no conforto do seu lar.
+                Cada imagem e ornamento produzido pela <strong class="text-gold font-normal">SagradaFé</strong> é tratado com absoluto respeito e reverência. Unimos a precisão da tecnologia 3D à sensibilidade do trabalho manual para entregar peças que alimentam a espiritualidade no conforto do seu lar. Realizamos entregas em <strong class="text-gold font-normal">Maringá e região</strong>.
             </p>
         </div>
     </section>
 
-    <!-- RODAPÉ -->
+    <!-- RODAPÉ E REDES SOCIAIS -->
     <footer id="contato" class="bg-sacredbg border-t border-gold/20 text-gray-400 py-12 mt-auto">
         <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
             <div>
                 <p class="font-serif-sacred text-white font-bold text-lg tracking-wider mb-1">SagradaFé</p>
                 <p class="text-xs text-gray-500">sagradafe.com.br • Arte e Devoção</p>
+                <p class="text-xs text-gold/80 mt-1">Atendimento e Entregas em Maringá e Região</p>
             </div>
+            
             <div class="flex items-center gap-4">
-                <a href="https://wa.me/5544998594898?text=Olá!%20Vim%20pelo%20site%20e%20gostaria%20de%20atendimento." target="_blank" class="bg-sacredcard border border-gold/30 p-3 rounded-full text-gold hover:bg-gold hover:text-sacredbg transition"><i data-lucide="message-circle" class="w-5 h-5"></i></a>
+                <a href="https://instagram.com/sagradafe" target="_blank" rel="noopener noreferrer" title="Instagram" class="bg-sacredcard border border-gold/30 p-3 rounded-full text-gold hover:bg-gold hover:text-sacredbg transition transform hover:scale-110">
+                    <i data-lucide="instagram" class="w-5 h-5"></i>
+                </a>
+                <a href="https://facebook.com/sagradafe" target="_blank" rel="noopener noreferrer" title="Facebook" class="bg-sacredcard border border-gold/30 p-3 rounded-full text-gold hover:bg-gold hover:text-sacredbg transition transform hover:scale-110">
+                    <i data-lucide="facebook" class="w-5 h-5"></i>
+                </a>
+                <a href="https://wa.me/5544998594898?text=Olá!%20Vim%20pelo%20site%20e%20gostaria%20de%20mais%20informações." target="_blank" rel="noopener noreferrer" title="WhatsApp" class="bg-sacredcard border border-gold/30 p-3 rounded-full text-gold hover:bg-gold hover:text-sacredbg transition transform hover:scale-110">
+                    <i data-lucide="message-circle" class="w-5 h-5"></i>
+                </a>
             </div>
         </div>
     </footer>
 
-    <!-- Inicialização dos Ícones -->
+    <!-- Script de Inicialização e Ocultar Preloader -->
     <script>
         lucide.createIcons();
+
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const preloader = document.getElementById('preloader');
+                preloader.style.opacity = '0';
+                setTimeout(() => {
+                    preloader.style.display = 'none';
+                }, 700);
+            }, 1200);
+        });
     </script>
 </body>
 </html>
