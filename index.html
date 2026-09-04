@@ -25,7 +25,7 @@
         body { font-family: 'Inter', sans-serif; }
         .font-serif-sacred { font-family: 'Playfair Display', serif; }
 
-        /* PLANO DE FUNDO DE VÍDEO REALISTA (Nuvens e Raios de Sol) */
+        /* PLANO DE FUNDO DE VÍDEO DO YOUTUBE EM LOOP */
         .video-fundo-container {
             position: fixed;
             top: 0;
@@ -37,13 +37,19 @@
             pointer-events: none;
         }
 
-        .video-fundo-container video {
+        .video-fundo-container iframe {
+            position: absolute;
+            top: 50%;
+            left: 50%;
             width: 100vw;
-            height: 100vh;
-            object-fit: cover;
+            height: 56.25vw; /* Proporção 16:9 */
+            min-height: 100vh;
+            min-width: 177.77vh;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
         }
 
-        /* Camada translúcida escura por cima do vídeo para destacar os textos brancos e dourados */
+        /* Camada translúcida escura por cima do vídeo para destacar os textos */
         .overlay-divino {
             position: fixed;
             top: 0;
@@ -77,10 +83,12 @@
 <body class="text-gray-200 min-h-screen flex flex-col selection:bg-gold selection:text-sacredbg relative overflow-x-hidden">
 
     <div class="video-fundo-container">
-        <video autoplay muted loop playsinline>
-            <source src="https://drive.google.com/uc?export=download&id=1nv4JciglK0hPv0pClev1TOFGzHgnSrVL" type="video/mp4">
-            Seu navegador não suporta vídeos de fundo.
-        </video>
+        <iframe 
+            src="https://www.youtube.com/embed/iJTHzhN4jH0?autoplay=1&mute=1&loop=1&playlist=iJTHzhN4jH0&controls=0&showinfo=0&modestbranding=1&disablekb=1&fs=0" 
+            title="Background Video" 
+            frameborder="0" 
+            allow="autoplay; encrypted-media">
+        </iframe>
     </div>
     <div class="overlay-divino"></div>
 
@@ -96,25 +104,6 @@
         </div>
     </div>
 
-    <div class="bg-sacredbg/95 backdrop-blur border-b border-gold/20 text-xs py-2 px-4 z-40">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3">
-            <div class="flex items-center gap-2 text-gold font-medium">
-                <i data-lucide="tv" class="w-4 h-4 animate-pulse"></i>
-                <span>TV Canção Nova ao Vivo (Clique para ativar o som):</span>
-            </div>
-            <div class="w-full sm:w-[380px] h-[85px] overflow-hidden rounded-lg border border-gold/40 bg-black/80 relative shadow-md flex items-center justify-center">
-                <iframe 
-                    src="https://www.youtube.com/embed/nv6UjvAcMj0?autoplay=1&mute=1&enablejsapi=1&controls=1" 
-                    title="YouTube live player" 
-                    frameborder="0" 
-                    class="w-full h-full absolute inset-0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen>
-                </iframe>
-            </div>
-        </div>
-    </div>
-
     <header class="sticky top-0 z-30 bg-sacredbg/95 backdrop-blur-md border-b border-gold/20 shadow-lg">
         <div class="max-w-7xl mx-auto px-4 h-24 flex items-center justify-between gap-6">
             <a href="#" class="flex items-center">
@@ -124,7 +113,6 @@
             <nav class="hidden xl:flex items-center gap-6 text-xs font-medium tracking-wide text-gray-300">
                 <a href="#inicio" class="hover:text-gold transition duration-300">Início</a>
                 <a href="#pecas" class="hover:text-gold transition duration-300">Imagens</a>
-                <a href="#cartoes" class="hover:text-gold transition duration-300">Cartão Oração Musical</a>
                 <a href="#pecas" class="hover:text-gold transition duration-300">Terços & Acessórios</a>
                 <a href="#sobre" class="hover:text-gold transition duration-300">'Nossa Missão'</a>
                 <a href="#contato" class="hover:text-gold transition duration-300">Contato</a>
@@ -251,41 +239,6 @@
                 </div>
             </div>
 
-        </div>
-    </section>
-
-    <section id="cartoes" class="max-w-7xl mx-auto px-4 py-16 w-full border-t border-gold/20 bg-sacredbg/80 backdrop-blur-md rounded-3xl my-8 shadow-2xl">
-        <div class="text-center max-w-xl mx-auto mb-14">
-            <span class="text-gold text-xs font-bold uppercase tracking-widest">Inovação e Fé</span>
-            <h2 class="font-serif-sacred text-3xl md:text-4xl font-bold text-white mt-2">Cartão de Oração Musical</h2>
-            <div class="w-16 h-0.5 bg-gold/50 mx-auto mt-4"></div>
-            <p class="text-gray-300 text-xs md:text-sm mt-3">Um presente inesquecível: cartão personalizado com oração e trilha sonora interativa.</p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center max-w-4xl mx-auto">
-            <div class="bg-sacredcard border border-gold/30 rounded-2xl overflow-hidden p-4 sacred-glow">
-                <div class="h-72 bg-gray-900 rounded-xl overflow-hidden relative">
-                    <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=600&q=80" alt="Cartão de Oração Musical" class="w-full h-full object-cover opacity-90">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-4">
-                        <span class="bg-gold text-sacredbg text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Música e Emoção</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="flex flex-col justify-center">
-                <h3 class="font-serif-sacred font-bold text-white text-2xl mb-4">Toque o coração de quem você ama</h3>
-                <p class="text-gray-300 text-sm mb-6 leading-relaxed">
-                    O <strong class="text-gold font-normal">Cartão de Oração Musical</strong> une uma bela mensagem de fé impressa com alta qualidade a uma experiência sonora emocionante através de tecnologia integrada. Perfeito para datas especiais, lembranças de batismo, casamentos ou para abençoar o dia de alguém querido.
-                </p>
-                <ul class="text-xs text-gray-300 space-y-2 mb-8">
-                    <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-gold"></i> Personalização completa de texto e intenção</li>
-                    <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-gold"></i> Música sacra ou devocional sob medida</li>
-                    <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-gold"></i> Acabamento refinado e elegante</li>
-                </ul>
-                <a href="https://wa.me/5544998594898?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20o%20Cartão%20de%20Oração%20Musical." target="_blank" rel="noopener noreferrer" class="bg-gold hover:bg-goldhover text-sacredbg font-bold px-6 py-3.5 rounded-xl transition shadow-lg shadow-gold/20 uppercase tracking-wider text-xs flex items-center justify-center gap-2">
-                    <i data-lucide="message-circle" class="w-4 h-4"></i> Encomendar Cartão Musical
-                </a>
-            </div>
         </div>
     </section>
 
