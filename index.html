@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SagradaFé - Arte e Devoção</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -19,9 +20,15 @@
             }
         }
     </script>
+    <!-- Ícones Lucide -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
+        /* CURSOR PERSONALIZADO COM BRILHO NEON DOURADO */
+        body, a, button, input, textarea, select {
+            cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='36' height='36' viewBox='0 0 24 24' fill='none' stroke='%23d4af37' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolygon points='5.5 3 19 12 12 14 16.5 21.5 14 23 9.5 15.5 5.5 19.5 5.5 3' style='filter: drop-shadow(0 0 4px %23ffeaa7);'/%3E%3C/svg%3E"), auto !important;
+        }
+
         body { font-family: 'Inter', sans-serif; }
         .font-serif-sacred { font-family: 'Playfair Display', serif; }
 
@@ -42,14 +49,14 @@
             top: 50%;
             left: 50%;
             width: 100vw;
-            height: 56.25vw; /* Proporção 16:9 */
+            height: 56.25vw;
             min-height: 100vh;
             min-width: 177.77vh;
             transform: translate(-50%, -50%);
             pointer-events: none;
         }
 
-        /* Camada translúcida escura por cima do vídeo para destacar os textos */
+        /* Camada translúcida escura por cima do vídeo */
         .overlay-divino {
             position: fixed;
             top: 0;
@@ -58,6 +65,41 @@
             height: 100vh;
             background: linear-gradient(180deg, rgba(15, 14, 19, 0.75) 0%, rgba(20, 18, 30, 0.6) 50%, rgba(15, 14, 19, 0.85) 100%);
             z-index: -2;
+            pointer-events: none;
+        }
+
+        /* ANIMAÇÃO DE LUZ DIVINA NO BANNER */
+        @keyframes luzDouradaPassando {
+            0% {
+                background-position: -200% 0;
+            }
+            100% {
+                background-position: 200% 0;
+            }
+        }
+
+        .banner-luz-efeito {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .banner-luz-efeito::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 200%;
+            height: 100%;
+            background: linear-gradient(
+                90deg, 
+                transparent 0%, 
+                rgba(255, 234, 167, 0.15) 35%, 
+                rgba(212, 175, 55, 0.4) 50%, 
+                rgba(255, 234, 167, 0.15) 65%, 
+                transparent 100%
+            );
+            transform: skewX(-20deg);
+            animation: luzDouradaPassando 4s ease-in-out infinite;
             pointer-events: none;
         }
 
@@ -82,6 +124,7 @@
 </head>
 <body class="text-gray-200 min-h-screen flex flex-col selection:bg-gold selection:text-sacredbg relative overflow-x-hidden">
 
+    <!-- VÍDEO DE PLANO DE FUNDO DO YOUTUBE (iJTHzhN4jH0) EM LOOP SILENCIOSO -->
     <div class="video-fundo-container">
         <iframe 
             src="https://www.youtube.com/embed/iJTHzhN4jH0?autoplay=1&mute=1&loop=1&playlist=iJTHzhN4jH0&controls=0&showinfo=0&modestbranding=1&disablekb=1&fs=0" 
@@ -92,9 +135,10 @@
     </div>
     <div class="overlay-divino"></div>
 
+    <!-- TELA DE CARREGAMENTO (SPLASH SCREEN) -->
     <div id="preloader" class="fixed inset-0 z-50 bg-[#0a090d] flex flex-col items-center justify-center transition-opacity duration-700">
         <div class="text-center flex flex-col items-center max-w-sm px-4">
-            <img src="logo_sagradafe.png" alt="SagradaFé" class="h-20 w-auto mb-6 animate-pulse">
+            <img src="https://lh3.googleusercontent.com/d/1d91Hc1ailctstgTxWgkUQqBLiwCNNCmn" alt="SagradaFé" class="h-20 w-auto mb-6 animate-pulse object-contain">
             <h2 class="font-serif-sacred text-gold text-xl font-bold tracking-widest mb-2">SAGRADAFÉ</h2>
             <p class="text-xs text-gray-400 tracking-wider uppercase mb-8">Abençoando o seu lar... Carregando arte e devoção</p>
             
@@ -104,12 +148,15 @@
         </div>
     </div>
 
+    <!-- CABEÇALHO -->
     <header class="sticky top-0 z-30 bg-sacredbg/95 backdrop-blur-md border-b border-gold/20 shadow-lg">
         <div class="max-w-7xl mx-auto px-4 h-24 flex items-center justify-between gap-6">
             <a href="#" class="flex items-center">
-                <img src="logo_sagradafe.png" alt="SagradaFé Arte e Devoção" class="h-14 w-auto object-contain transition transform hover:scale-105 duration-300">
+                <!-- LOGOMARCA ATUALIZADA COM O LINK DO GOOGLE DRIVE -->
+                <img src="https://lh3.googleusercontent.com/d/1d91Hc1ailctstgTxWgkUQqBLiwCNNCmn" alt="SagradaFé Arte e Devoção" class="h-14 w-auto object-contain transition transform hover:scale-105 duration-300">
             </a>
 
+            <!-- MENU ATUALIZADO -->
             <nav class="hidden xl:flex items-center gap-6 text-xs font-medium tracking-wide text-gray-300">
                 <a href="#inicio" class="hover:text-gold transition duration-300">Início</a>
                 <a href="#pecas" class="hover:text-gold transition duration-300">Imagens</a>
@@ -126,6 +173,7 @@
         </div>
     </header>
 
+    <!-- SEÇÃO HERO (PRINCIPAL) -->
     <section id="inicio" class="max-w-7xl mx-auto px-4 py-16 md:py-24 w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         <div class="lg:col-span-7 flex flex-col items-start">
             <div class="inline-flex items-center gap-2 bg-sacredbg/80 backdrop-blur border border-gold/30 text-gold px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest mb-6 shadow-sm">
@@ -151,16 +199,17 @@
         </div>
 
         <div class="lg:col-span-5 relative">
-            <div class="bg-sacredcard border border-gold/30 rounded-3xl p-4 shadow-2xl relative overflow-hidden group sacred-glow">
+            <!-- BANNER COM ANIMAÇÃO DE LUZ DOURADA PASSANDO -->
+            <div class="bg-sacredcard border border-gold/30 rounded-3xl p-4 shadow-2xl relative overflow-hidden group sacred-glow banner-luz-efeito">
                 <div class="grid grid-cols-2 gap-3 h-[420px]">
                     <div class="rounded-2xl overflow-hidden relative bg-gray-900 border border-gold/10">
-                        <img src="https://lh3.googleusercontent.com/d/1vTWdKQe4FzvAIf4PPzGtws72z1pEmwTX" alt="Sagrado Coração de Jesus" class="w-full h-full object-cover group-hover:scale-110 transition duration-700 opacity-90">
+                        <img src="https://lh3.googleusercontent.com/d/1hTRD8ftZWgSp7_O6bDVzIzDWmITNtays" alt="Banner Sagrado" class="w-full h-full object-cover group-hover:scale-110 transition duration-700 opacity-90">
                     </div>
                     <div class="rounded-2xl overflow-hidden relative bg-gray-900 border border-gold/10">
-                        <img src="https://images.unsplash.com/photo-1548625361-1607386d389e?auto=format&fit=crop&w=600&q=80" alt="Decoração Devocional" class="w-full h-full object-cover group-hover:scale-110 transition duration-700 opacity-90">
+                        <img src="https://lh3.googleusercontent.com/d/1hTRD8ftZWgSp7_O6bDVzIzDWmITNtays" alt="Banner Sagrado" class="w-full h-full object-cover group-hover:scale-110 transition duration-700 opacity-90">
                     </div>
                 </div>
-                <div class="absolute bottom-6 left-6 right-6 bg-sacredbg/95 backdrop-blur-md border border-gold/40 p-4 rounded-2xl flex items-center gap-3 shadow-xl">
+                <div class="absolute bottom-6 left-6 right-6 bg-sacredbg/95 backdrop-blur-md border border-gold/40 p-4 rounded-2xl flex items-center gap-3 shadow-xl z-10">
                     <span class="bg-gold/10 border border-gold/30 text-gold p-2.5 rounded-xl">
                         <i data-lucide="heart-handshake" class="w-5 h-5"></i>
                     </span>
@@ -173,6 +222,7 @@
         </div>
     </section>
 
+    <!-- SEÇÃO DE PEÇAS / DESTAQUES -->
     <section id="pecas" class="max-w-7xl mx-auto px-4 py-16 w-full border-t border-gold/20 bg-sacredbg/80 backdrop-blur-md rounded-3xl my-8 shadow-2xl">
         <div class="text-center max-w-xl mx-auto mb-14">
             <span class="text-gold text-xs font-bold uppercase tracking-widest">Coleção Sagrada</span>
@@ -182,6 +232,7 @@
 
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
             
+            <!-- Produto 1 -->
             <div class="bg-sacredcard border border-gold/20 rounded-2xl overflow-hidden flex flex-col justify-between group sacred-glow transition duration-300">
                 <div>
                     <div class="h-64 bg-gray-900 overflow-hidden relative">
@@ -201,6 +252,7 @@
                 </div>
             </div>
 
+            <!-- Produto 2 -->
             <div class="bg-sacredcard border border-gold/20 rounded-2xl overflow-hidden flex flex-col justify-between group sacred-glow transition duration-300">
                 <div>
                     <div class="h-64 bg-gray-900 overflow-hidden relative">
@@ -220,6 +272,7 @@
                 </div>
             </div>
 
+            <!-- Produto 3 -->
             <div class="bg-sacredcard border border-gold/20 rounded-2xl overflow-hidden flex flex-col justify-between group sacred-glow transition duration-300">
                 <div>
                     <div class="h-64 bg-gray-900 overflow-hidden relative">
@@ -242,6 +295,7 @@
         </div>
     </section>
 
+    <!-- SOBRE / NOSSA MISSÃO -->
     <section id="sobre" class="bg-sacredbg/90 backdrop-blur-md border-y border-gold/20 py-16 my-8 shadow-xl">
         <div class="max-w-5xl mx-auto px-4 text-center">
             <span class="text-gold text-xs font-bold uppercase tracking-widest">Tradição e Cuidado</span>
@@ -252,6 +306,7 @@
         </div>
     </section>
 
+    <!-- RODAPÉ E REDES SOCIAIS -->
     <footer id="contato" class="bg-sacredbg border-t border-gold/20 text-gray-400 py-12 mt-auto">
         <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
             <div>
@@ -274,6 +329,7 @@
         </div>
     </footer>
 
+    <!-- Script de Inicialização e Ocultar Preloader -->
     <script>
         lucide.createIcons();
 
