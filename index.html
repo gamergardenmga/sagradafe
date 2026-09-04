@@ -112,35 +112,6 @@
             animation: chamaPulsar 2s ease-in-out infinite;
         }
 
-        /* TRANSIÇÃO DE IMAGEM NORMAL PARA TRANSPARENTE AO PASSAR O MOUSE */
-        .transicao-img-container {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .transicao-img-container img {
-            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
-        }
-
-        .transicao-img-container .img-transparente {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-        }
-
-        .transicao-img-container:hover .img-normal {
-            opacity: 0;
-            transform: scale(1.05);
-        }
-
-        .transicao-img-container:hover .img-transparente {
-            opacity: 1;
-            transform: scale(1.05);
-        }
-
         /* Brilho Dourado Sagrado no Hover dos Cards */
         .sacred-glow:hover {
             box-shadow: 0 0 25px rgba(212, 175, 55, 0.4);
@@ -265,10 +236,13 @@
             
             <div class="bg-sacredcard border border-gold/20 rounded-2xl overflow-hidden flex flex-col justify-between group sacred-glow transition duration-300">
                 <div>
-                    <div class="h-64 bg-gray-900 overflow-hidden relative transicao-img-container">
+                    <div class="h-64 bg-gray-900 overflow-hidden relative">
                         <span class="absolute top-3 left-3 z-10 bg-gold text-sacredbg text-[10px] font-bold px-2.5 py-1 rounded uppercase tracking-wider shadow">Exclusivo</span>
-                        <img src="https://drive.google.com/uc?export=view&id=18NXTBWvGNzM5quHRN-vyBoYHfWFfftub" alt="Sagrado Coração São José" class="w-full h-full object-cover img-normal">
-                        <img src="https://drive.google.com/uc?export=view&id=1a5ryyqKKiIUu-Jy3TKcBpAmP5UBlCliy" alt="Sagrado Coração São José Transparente" class="w-full h-full object-cover img-transparente">
+                        <img src="https://drive.google.com/uc?export=view&id=18NXTBWvGNzM5quHRN-vyBoYHfWFfftub" 
+                             data-normal="https://drive.google.com/uc?export=view&id=18NXTBWvGNzM5quHRN-vyBoYHfWFfftub" 
+                             data-alt="https://drive.google.com/uc?export=view&id=1a5ryyqKKiIUu-Jy3TKcBpAmP5UBlCliy" 
+                             alt="Sagrado Coração São José" 
+                             class="w-full h-full object-cover transition-all duration-500 hover:scale-105 img-troca-link">
                     </div>
                     <div class="p-6">
                         <h3 class="font-serif-sacred font-bold text-white text-lg mb-2">Sagrado Coração São José</h3>
@@ -285,10 +259,13 @@
 
             <div class="bg-sacredcard border border-gold/20 rounded-2xl overflow-hidden flex flex-col justify-between group sacred-glow transition duration-300">
                 <div>
-                    <div class="h-64 bg-gray-900 overflow-hidden relative transicao-img-container">
+                    <div class="h-64 bg-gray-900 overflow-hidden relative">
                         <span class="absolute top-3 left-3 z-10 bg-gold text-sacredbg text-[10px] font-bold px-2.5 py-1 rounded uppercase tracking-wider shadow">Pintura Fina</span>
-                        <img src="https://drive.google.com/uc?export=view&id=1t4pAwUHu6lWFxbpSKc3hoRYFzhY-0iW2" alt="Sagrado Coração Jesus" class="w-full h-full object-cover img-normal">
-                        <img src="https://drive.google.com/uc?export=view&id=1MJG7EnKiEZ1mUEtoFmw2-ChEMmY96Opo" alt="Sagrado Coração Jesus Transparente" class="w-full h-full object-cover img-transparente">
+                        <img src="https://drive.google.com/uc?export=view&id=1t4pAwUHu6lWFxbpSKc3hoRYFzhY-0iW2" 
+                             data-normal="https://drive.google.com/uc?export=view&id=1t4pAwUHu6lWFxbpSKc3hoRYFzhY-0iW2" 
+                             data-alt="https://drive.google.com/uc?export=view&id=1MJG7EnKiEZ1mUEtoFmw2-ChEMmY96Opo" 
+                             alt="Sagrado Coração Jesus" 
+                             class="w-full h-full object-cover transition-all duration-500 hover:scale-105 img-troca-link">
                     </div>
                     <div class="p-6">
                         <h3 class="font-serif-sacred font-bold text-white text-lg mb-2">Sagrado Coração Jesus</h3>
@@ -305,10 +282,13 @@
 
             <div class="bg-sacredcard border border-gold/20 rounded-2xl overflow-hidden flex flex-col justify-between group sacred-glow transition duration-300">
                 <div>
-                    <div class="h-64 bg-gray-900 overflow-hidden relative transicao-img-container">
+                    <div class="h-64 bg-gray-900 overflow-hidden relative">
                         <span class="absolute top-3 left-3 z-10 bg-gold text-sacredbg text-[10px] font-bold px-2.5 py-1 rounded uppercase tracking-wider shadow">Devocional</span>
-                        <img src="https://drive.google.com/uc?export=view&id=1J9pwEUmk3kcayveKnT0ItoYd6r5JgMmx" alt="Sagrado Coração Nossa Senhora" class="w-full h-full object-cover img-normal">
-                        <img src="https://drive.google.com/uc?export=view&id=1p5m253eEJnE-jdTpfNQaGxtx3d86PdGd" alt="Sagrado Coração Nossa Senhora Transparente" class="w-full h-full object-cover img-transparente">
+                        <img src="https://drive.google.com/uc?export=view&id=1J9pwEUmk3kcayveKnT0ItoYd6r5JgMmx" 
+                             data-normal="https://drive.google.com/uc?export=view&id=1J9pwEUmk3kcayveKnT0ItoYd6r5JgMmx" 
+                             data-alt="https://drive.google.com/uc?export=view&id=1p5m253eEJnE-jdTpfNQaGxtx3d86PdGd" 
+                             alt="Sagrado Coração Nossa Senhora" 
+                             class="w-full h-full object-cover transition-all duration-500 hover:scale-105 img-troca-link">
                     </div>
                     <div class="p-6">
                         <h3 class="font-serif-sacred font-bold text-white text-lg mb-2">Sagrado Coração Nossa Senhora</h3>
@@ -361,6 +341,7 @@
     <script>
         lucide.createIcons();
 
+        // Ocultar preloader após o carregamento
         window.addEventListener('load', () => {
             setTimeout(() => {
                 const preloader = document.getElementById('preloader');
@@ -369,6 +350,20 @@
                     preloader.style.display = 'none';
                 }, 700);
             }, 1200);
+        });
+
+        // Lógica para alternar o link da imagem (normal <-> variante alternativa) ao passar o mouse
+        document.querySelectorAll('.img-troca-link').forEach(img => {
+            const linkNormal = img.getAttribute('data-normal');
+            const linkAlternativo = img.getAttribute('data-alt');
+
+            img.addEventListener('mouseenter', () => {
+                img.src = linkAlternativo;
+            });
+
+            img.addEventListener('mouseleave', () => {
+                img.src = linkNormal;
+            });
         });
     </script>
 </body>
