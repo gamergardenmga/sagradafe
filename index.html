@@ -100,6 +100,12 @@
             transition: all 0.4s ease;
         }
 
+        /* Zoom da Imagem em Destaque */
+        .zoom-destaque:hover {
+            transform: scale(1.12);
+            z-index: 20;
+        }
+
         /* Animação da Barra de Carregamento */
         @keyframes loadBar {
             0% { width: 0%; }
@@ -116,7 +122,7 @@
     <!-- CANVAS PARA O EFEITO DE LUZ E FAGULHAS SEGUINDO O CURSOR -->
     <canvas id="cursor-canvas" class="fixed inset-0 pointer-events-none z-50"></canvas>
 
-    <!-- VÍDEO DE PLANO DE FUNDO DO YOUTUBE (iJTHzhN4jH0) EM LOOP SILENCIOSO -->
+    <!-- VÍDEO DE PLANO DE FUNDO DO YOUTUBE EM LOOP SILENCIOSO -->
     <div class="video-fundo-container">
         <iframe 
             src="https://www.youtube.com/embed/iJTHzhN4jH0?autoplay=1&mute=1&loop=1&playlist=iJTHzhN4jH0&controls=0&showinfo=0&modestbranding=1&disablekb=1&fs=0" 
@@ -146,7 +152,7 @@
         </div>
     </div>
 
-    <!-- CABEÇALHO COM BANNER DE FUNDO E TEXTOS DESTACADOS -->
+    <!-- CABEÇALHO -->
     <header class="sticky top-0 z-30 border-b border-gold/30 shadow-2xl relative overflow-hidden">
         <div class="absolute inset-0 z-0">
             <img src="https://lh3.googleusercontent.com/d/1hTRD8ftZWgSp7_O6bDVzIzDWmITNtays=s800" alt="Banner Fundo Header" class="w-full h-full object-cover opacity-35 filter blur-[1px]">
@@ -160,9 +166,9 @@
 
             <nav class="hidden xl:flex items-center gap-6 text-xs font-semibold tracking-wide text-white drop-shadow-[0_2px_6px_rgba(0,0,0,0.95)]">
                 <a href="#inicio" class="hover:text-gold transition duration-300">Início</a>
-                <a href="#imagens" class="hover:text-gold transition duration-300">Imagens</a>
+                <a href="#imagens" class="hover:text-gold transition duration-300">Imagens com Som</a>
                 <a href="#tercos" class="hover:text-gold transition duration-300">Terços & Acessórios</a>
-                <a href="#sobre" class="hover:text-gold transition duration-300">'Nossa Missão'</a>
+                <a href="#sobre" class="hover:text-gold transition duration-300">Nossa Missão</a>
                 <a href="#contato" class="hover:text-gold transition duration-300">Contato</a>
             </nav>
 
@@ -174,7 +180,7 @@
         </div>
     </header>
 
-    <!-- SEÇÃO HERO (PRINCIPAL) -->
+    <!-- SEÇÃO HERO -->
     <section id="inicio" class="max-w-5xl mx-auto px-4 py-20 md:py-28 w-full flex flex-col items-center text-center relative min-h-[calc(100vh-6rem)] justify-center">
         <div class="inline-flex items-center gap-2 bg-sacredbg/60 backdrop-blur border border-gold/30 text-gold px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest mb-6 shadow-sm">
             <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> Entregas em Maringá e Região
@@ -185,7 +191,7 @@
         </h1>
 
         <p class="text-gray-100 text-base md:text-lg mb-10 leading-relaxed font-light drop-shadow-md max-w-3xl mx-auto">
-            Estátuas sagradas, oratórios e elementos devocionais impressos em 3D e finalizados artesanalmente com pintura fina e delicada. Leve mais beleza, significado e fé para o seu lar.
+            Estátuas sagradas com módulo de som e oração, oratórios e elementos devocionais impressos em 3D e finalizados artesanalmente. Leve mais beleza, significado e oração para o seu lar.
         </p>
 
         <div class="flex flex-wrap justify-center gap-4 w-full mb-12">
@@ -197,7 +203,6 @@
             </a>
         </div>
 
-        <!-- Seta de indicação para baixo (rolagem) -->
         <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex flex-col items-center animate-bounce">
             <a href="#imagens" class="text-gold hover:text-goldhover p-2 transition">
                 <i data-lucide="chevron-down" class="w-8 h-8 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]"></i>
@@ -205,83 +210,150 @@
         </div>
     </section>
 
-    <!-- SEÇÃO: IMAGENS (ESTÁTUAS E PEÇAS EM DESTAQUE) -->
+    <!-- SEÇÃO: IMAGENS COM ÁUDIO/ORAÇÃO -->
     <section id="imagens" class="max-w-7xl mx-auto px-4 py-16 w-full border-t border-gold/20 bg-sacredbg/50 backdrop-blur-md rounded-3xl my-8 shadow-2xl">
         <div class="text-center max-w-xl mx-auto mb-14">
-            <span class="text-gold text-xs font-bold uppercase tracking-widest">Coleção Sagrada</span>
-            <h2 class="font-cinzel text-3xl md:text-4xl font-bold text-white mt-2">Imagens</h2>
+            <span class="text-gold text-xs font-bold uppercase tracking-widest">Coleção Especial com Áudio</span>
+            <h2 class="font-cinzel text-3xl md:text-4xl font-bold text-white mt-2">Imagens Sacras com Oração</h2>
             <div class="w-16 h-0.5 bg-gold/50 mx-auto mt-4"></div>
+            <p class="text-gray-300 text-xs md:text-sm mt-3">Passe o mouse ou toque nas miniaturas (1 a 4) para alternar a imagem exibida.</p>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
             
-            <!-- 1. Sagrado Coração São José -->
+            <!-- 1. Sagrado Coração de Jesus -->
             <div class="bg-sacredcard border border-gold/20 rounded-2xl overflow-hidden flex flex-col justify-between group sacred-glow transition duration-300">
                 <div>
-                    <div class="h-64 bg-black/30 overflow-hidden relative flex items-center justify-center p-2">
-                        <span class="absolute top-3 left-3 z-10 bg-gold text-sacredbg text-[10px] font-bold px-2.5 py-1 rounded uppercase tracking-wider shadow">Exclusivo</span>
-                        <img src="https://lh3.googleusercontent.com/d/18NXTBWvGNzM5quHRN-vyBoYHfWFfftub=s800" 
-                             data-normal="https://lh3.googleusercontent.com/d/18NXTBWvGNzM5quHRN-vyBoYHfWFfftub=s800" 
-                             data-alt="https://lh3.googleusercontent.com/d/1a5ryyqKKiIUu-Jy3TKcBpAmP5UBlCliy=s800" 
-                             alt="Sagrado Coração São José" 
-                             class="max-h-full max-w-full object-contain transition-all duration-500 hover:scale-105 img-troca-link">
+                    <!-- Visualizador Principal -->
+                    <div class="h-72 bg-black/40 overflow-hidden relative flex items-center justify-center p-3 group-hover:bg-black/20 transition">
+                        <span class="absolute top-3 left-3 z-10 bg-gold text-sacredbg text-[10px] font-bold px-2.5 py-1 rounded uppercase tracking-wider shadow flex items-center gap-1">
+                            <i data-lucide="volume-2" class="w-3 h-3"></i> Áudio + Oração
+                        </span>
+                        <img id="main-jesus" 
+                             src="https://lh3.googleusercontent.com/d/12Nbh4A6odurtj7YbxLNuyOK0YKWwdzlg=s800" 
+                             alt="Sagrado Coração de Jesus" 
+                             class="max-h-full max-w-full object-contain transition-all duration-300 transform zoom-destaque cursor-pointer">
                     </div>
+
+                    <!-- Miniaturas 1 a 4 (Jesus) -->
+                    <div class="p-3 bg-black/20 border-b border-gold/10 flex items-center justify-center gap-2">
+                        <button onclick="setMainImage('main-jesus', 'https://lh3.googleusercontent.com/d/12Nbh4A6odurtj7YbxLNuyOK0YKWwdzlg=s800', this)" onmouseenter="setMainImage('main-jesus', 'https://lh3.googleusercontent.com/d/12Nbh4A6odurtj7YbxLNuyOK0YKWwdzlg=s800', this)" class="thumb-btn active-thumb w-12 h-12 rounded-lg border-2 border-gold overflow-hidden bg-black/40 focus:outline-none transition transform hover:scale-110">
+                            <img src="https://lh3.googleusercontent.com/d/12Nbh4A6odurtj7YbxLNuyOK0YKWwdzlg=s800" alt="Jesus 1" class="w-full h-full object-cover">
+                        </button>
+                        <button onclick="setMainImage('main-jesus', 'https://lh3.googleusercontent.com/d/15sTQhhHjN_ycorvz2jCfOwjbrJ6RreuL=s800', this)" onmouseenter="setMainImage('main-jesus', 'https://lh3.googleusercontent.com/d/15sTQhhHjN_ycorvz2jCfOwjbrJ6RreuL=s800', this)" class="thumb-btn w-12 h-12 rounded-lg border border-gold/30 hover:border-gold overflow-hidden bg-black/40 focus:outline-none transition transform hover:scale-110">
+                            <img src="https://lh3.googleusercontent.com/d/15sTQhhHjN_ycorvz2jCfOwjbrJ6RreuL=s800" alt="Jesus 2" class="w-full h-full object-cover">
+                        </button>
+                        <button onclick="setMainImage('main-jesus', 'https://lh3.googleusercontent.com/d/11vmLTHqEnkeJ8FbDLG8M2u94InnY9whP=s800', this)" onmouseenter="setMainImage('main-jesus', 'https://lh3.googleusercontent.com/d/11vmLTHqEnkeJ8FbDLG8M2u94InnY9whP=s800', this)" class="thumb-btn w-12 h-12 rounded-lg border border-gold/30 hover:border-gold overflow-hidden bg-black/40 focus:outline-none transition transform hover:scale-110">
+                            <img src="https://lh3.googleusercontent.com/d/11vmLTHqEnkeJ8FbDLG8M2u94InnY9whP=s800" alt="Jesus 3" class="w-full h-full object-cover">
+                        </button>
+                        <button onclick="setMainImage('main-jesus', 'https://lh3.googleusercontent.com/d/1XfUjdWi16hGtqeSE3pO--Kftw75xBFY_=s800', this)" onmouseenter="setMainImage('main-jesus', 'https://lh3.googleusercontent.com/d/1XfUjdWi16hGtqeSE3pO--Kftw75xBFY_=s800', this)" class="thumb-btn w-12 h-12 rounded-lg border border-gold/30 hover:border-gold overflow-hidden bg-black/40 focus:outline-none transition transform hover:scale-110">
+                            <img src="https://lh3.googleusercontent.com/d/1XfUjdWi16hGtqeSE3pO--Kftw75xBFY_=s800" alt="Jesus 4" class="w-full h-full object-cover">
+                        </button>
+                    </div>
+
+                    <!-- Conteúdo Descritivo -->
                     <div class="p-6">
-                        <h3 class="font-cinzel font-bold text-white text-lg mb-2">Sagrado Coração São José</h3>
-                        <p class="text-gray-300 text-xs mb-4 leading-relaxed">Representação fiel do patrono dos lares, modelada em 3D e decorada à mão.</p>
+                        <h3 class="font-cinzel font-bold text-white text-lg mb-2">Sagrado Coração de Jesus</h3>
+                        <p class="text-gray-300 text-xs mb-4 leading-relaxed">
+                            Modelo exclusivo impresso em 3D com pintura fina detalhada. <strong>Possui módulo de som integrado com a oração do Sagrado Coração de Jesus</strong> para enriquecer os momentos de devoção da sua família.
+                        </p>
                         <div class="text-gold font-bold text-sm tracking-wider uppercase">Sob Encomenda</div>
                     </div>
                 </div>
                 <div class="p-6 pt-0">
-                    <a href="https://wa.me/5544998594898?text=Olá!%20Gostaria%20de%20solicitar%20um%20orçamento%20para%20a%20estátua:%20Sagrado%20Coração%20São%20José." target="_blank" rel="noopener noreferrer" class="w-full bg-sacredbg/80 border border-gold/30 hover:bg-gold hover:text-sacredbg text-gold font-semibold py-3 rounded-xl flex items-center justify-center gap-2 transition text-xs uppercase tracking-wider">
+                    <a href="https://wa.me/5544998594898?text=Olá!%20Gostaria%20de%20solicitar%20um%20orçamento%20para%20a%20estátua%20com%20som:%20Sagrado%20Coração%20de%20Jesus." target="_blank" rel="noopener noreferrer" class="w-full bg-sacredbg/80 border border-gold/30 hover:bg-gold hover:text-sacredbg text-gold font-semibold py-3 rounded-xl flex items-center justify-center gap-2 transition text-xs uppercase tracking-wider">
                         <i data-lucide="message-circle" class="w-4 h-4"></i> Solicitar Orçamento
                     </a>
                 </div>
             </div>
 
-            <!-- 2. Sagrado Coração Jesus -->
+            <!-- 2. Sagrado Coração de São José -->
             <div class="bg-sacredcard border border-gold/20 rounded-2xl overflow-hidden flex flex-col justify-between group sacred-glow transition duration-300">
                 <div>
-                    <div class="h-64 bg-black/30 overflow-hidden relative flex items-center justify-center p-2">
-                        <span class="absolute top-3 left-3 z-10 bg-gold text-sacredbg text-[10px] font-bold px-2.5 py-1 rounded uppercase tracking-wider shadow">Pintura Fina</span>
-                        <img src="https://lh3.googleusercontent.com/d/1t4pAwUHu6lWFxbpSKc3hoRYFzhY-0iW2=s800" 
-                             data-normal="https://lh3.googleusercontent.com/d/1t4pAwUHu6lWFxbpSKc3hoRYFzhY-0iW2=s800" 
-                             data-alt="https://lh3.googleusercontent.com/d/1MJG7EnKiEZ1mUEtoFmw2-ChEMmY96Opo=s800" 
-                             alt="Sagrado Coração Jesus" 
-                             class="max-h-full max-w-full object-contain transition-all duration-500 hover:scale-105 img-troca-link">
+                    <!-- Visualizador Principal -->
+                    <div class="h-72 bg-black/40 overflow-hidden relative flex items-center justify-center p-3 group-hover:bg-black/20 transition">
+                        <span class="absolute top-3 left-3 z-10 bg-gold text-sacredbg text-[10px] font-bold px-2.5 py-1 rounded uppercase tracking-wider shadow flex items-center gap-1">
+                            <i data-lucide="volume-2" class="w-3 h-3"></i> Áudio + Oração
+                        </span>
+                        <img id="main-jose" 
+                             src="https://lh3.googleusercontent.com/d/1YOel88n6Jk2UpOUd1f2ABYcdJEccRZ8X=s800" 
+                             alt="Sagrado Coração de São José" 
+                             class="max-h-full max-w-full object-contain transition-all duration-300 transform zoom-destaque cursor-pointer">
                     </div>
+
+                    <!-- Miniaturas 1 a 4 (José) -->
+                    <div class="p-3 bg-black/20 border-b border-gold/10 flex items-center justify-center gap-2">
+                        <button onclick="setMainImage('main-jose', 'https://lh3.googleusercontent.com/d/1YOel88n6Jk2UpOUd1f2ABYcdJEccRZ8X=s800', this)" onmouseenter="setMainImage('main-jose', 'https://lh3.googleusercontent.com/d/1YOel88n6Jk2UpOUd1f2ABYcdJEccRZ8X=s800', this)" class="thumb-btn active-thumb w-12 h-12 rounded-lg border-2 border-gold overflow-hidden bg-black/40 focus:outline-none transition transform hover:scale-110">
+                            <img src="https://lh3.googleusercontent.com/d/1YOel88n6Jk2UpOUd1f2ABYcdJEccRZ8X=s800" alt="José 1" class="w-full h-full object-cover">
+                        </button>
+                        <button onclick="setMainImage('main-jose', 'https://lh3.googleusercontent.com/d/1iWyxl4SdsdJ6Au8Wm5bNo0DiNHLhywQQ=s800', this)" onmouseenter="setMainImage('main-jose', 'https://lh3.googleusercontent.com/d/1iWyxl4SdsdJ6Au8Wm5bNo0DiNHLhywQQ=s800', this)" class="thumb-btn w-12 h-12 rounded-lg border border-gold/30 hover:border-gold overflow-hidden bg-black/40 focus:outline-none transition transform hover:scale-110">
+                            <img src="https://lh3.googleusercontent.com/d/1iWyxl4SdsdJ6Au8Wm5bNo0DiNHLhywQQ=s800" alt="José 2" class="w-full h-full object-cover">
+                        </button>
+                        <button onclick="setMainImage('main-jose', 'https://lh3.googleusercontent.com/d/1Qy_NAtGJ1FhmxlPbm09D5Ie5Ud-K_GZF=s800', this)" onmouseenter="setMainImage('main-jose', 'https://lh3.googleusercontent.com/d/1Qy_NAtGJ1FhmxlPbm09D5Ie5Ud-K_GZF=s800', this)" class="thumb-btn w-12 h-12 rounded-lg border border-gold/30 hover:border-gold overflow-hidden bg-black/40 focus:outline-none transition transform hover:scale-110">
+                            <img src="https://lh3.googleusercontent.com/d/1Qy_NAtGJ1FhmxlPbm09D5Ie5Ud-K_GZF=s800" alt="José 3" class="w-full h-full object-cover">
+                        </button>
+                        <button onclick="setMainImage('main-jose', 'https://lh3.googleusercontent.com/d/15o-7el6u8DAuoZeqqnHMQCzrcJpueIx2=s800', this)" onmouseenter="setMainImage('main-jose', 'https://lh3.googleusercontent.com/d/15o-7el6u8DAuoZeqqnHMQCzrcJpueIx2=s800', this)" class="thumb-btn w-12 h-12 rounded-lg border border-gold/30 hover:border-gold overflow-hidden bg-black/40 focus:outline-none transition transform hover:scale-110">
+                            <img src="https://lh3.googleusercontent.com/d/15o-7el6u8DAuoZeqqnHMQCzrcJpueIx2=s800" alt="José 4" class="w-full h-full object-cover">
+                        </button>
+                    </div>
+
+                    <!-- Conteúdo Descritivo -->
                     <div class="p-6">
-                        <h3 class="font-cinzel font-bold text-white text-lg mb-2">Sagrado Coração Jesus</h3>
-                        <p class="text-gray-300 text-xs mb-4 leading-relaxed">Estátua sacra com riqueza de detalhes e pintura artística manual inspirada na fé.</p>
+                        <h3 class="font-cinzel font-bold text-white text-lg mb-2">Sagrado Coração de São José</h3>
+                        <p class="text-gray-300 text-xs mb-4 leading-relaxed">
+                            Representação do patrono dos lares e das famílias. <strong>Acompanha sistema de áudio com a oração especial a São José</strong>, unindo arte, fé e som no mesmo ornamento.
+                        </p>
                         <div class="text-gold font-bold text-sm tracking-wider uppercase">Sob Encomenda</div>
                     </div>
                 </div>
                 <div class="p-6 pt-0">
-                    <a href="https://wa.me/5544998594898?text=Olá!%20Gostaria%20de%20solicitar%20um%20orçamento%20para%20a%20estátua:%20Sagrado%20Coração%20Jesus." target="_blank" rel="noopener noreferrer" class="w-full bg-sacredbg/80 border border-gold/30 hover:bg-gold hover:text-sacredbg text-gold font-semibold py-3 rounded-xl flex items-center justify-center gap-2 transition text-xs uppercase tracking-wider">
+                    <a href="https://wa.me/5544998594898?text=Olá!%20Gostaria%20de%20solicitar%20um%20orçamento%20para%20a%20estátua%20com%20som:%20Sagrado%20Coração%20de%20São%20José." target="_blank" rel="noopener noreferrer" class="w-full bg-sacredbg/80 border border-gold/30 hover:bg-gold hover:text-sacredbg text-gold font-semibold py-3 rounded-xl flex items-center justify-center gap-2 transition text-xs uppercase tracking-wider">
                         <i data-lucide="message-circle" class="w-4 h-4"></i> Solicitar Orçamento
                     </a>
                 </div>
             </div>
 
-            <!-- 3. Sagrado Coração Nossa Senhora -->
+            <!-- 3. Imaculado Coração de Maria -->
             <div class="bg-sacredcard border border-gold/20 rounded-2xl overflow-hidden flex flex-col justify-between group sacred-glow transition duration-300">
                 <div>
-                    <div class="h-64 bg-black/30 overflow-hidden relative flex items-center justify-center p-2">
-                        <span class="absolute top-3 left-3 z-10 bg-gold text-sacredbg text-[10px] font-bold px-2.5 py-1 rounded uppercase tracking-wider shadow">Devocional</span>
-                        <img src="https://lh3.googleusercontent.com/d/1J9pwEUmk3kcayveKnT0ItoYd6r5JgMmx=s800" 
-                             data-normal="https://lh3.googleusercontent.com/d/1J9pwEUmk3kcayveKnT0ItoYd6r5JgMmx=s800" 
-                             data-alt="https://lh3.googleusercontent.com/d/1p5m253eEJnE-jdTpfNQaGxtx3d86PdGd=s800" 
-                             alt="Sagrado Coração Nossa Senhora" 
-                             class="max-h-full max-w-full object-contain transition-all duration-500 hover:scale-105 img-troca-link">
+                    <!-- Visualizador Principal -->
+                    <div class="h-72 bg-black/40 overflow-hidden relative flex items-center justify-center p-3 group-hover:bg-black/20 transition">
+                        <span class="absolute top-3 left-3 z-10 bg-gold text-sacredbg text-[10px] font-bold px-2.5 py-1 rounded uppercase tracking-wider shadow flex items-center gap-1">
+                            <i data-lucide="volume-2" class="w-3 h-3"></i> Áudio + Oração
+                        </span>
+                        <img id="main-maria" 
+                             src="https://lh3.googleusercontent.com/d/1VWkk77agTu8bKtAUJiGYmJr35cBXNGAx=s800" 
+                             alt="Imaculado Coração de Maria" 
+                             class="max-h-full max-w-full object-contain transition-all duration-300 transform zoom-destaque cursor-pointer">
                     </div>
+
+                    <!-- Miniaturas 1 a 4 (Maria) -->
+                    <div class="p-3 bg-black/20 border-b border-gold/10 flex items-center justify-center gap-2">
+                        <button onclick="setMainImage('main-maria', 'https://lh3.googleusercontent.com/d/1VWkk77agTu8bKtAUJiGYmJr35cBXNGAx=s800', this)" onmouseenter="setMainImage('main-maria', 'https://lh3.googleusercontent.com/d/1VWkk77agTu8bKtAUJiGYmJr35cBXNGAx=s800', this)" class="thumb-btn active-thumb w-12 h-12 rounded-lg border-2 border-gold overflow-hidden bg-black/40 focus:outline-none transition transform hover:scale-110">
+                            <img src="https://lh3.googleusercontent.com/d/1VWkk77agTu8bKtAUJiGYmJr35cBXNGAx=s800" alt="Maria 1" class="w-full h-full object-cover">
+                        </button>
+                        <button onclick="setMainImage('main-maria', 'https://lh3.googleusercontent.com/d/1dWoH5ZL9_MJtmyzJ1lns6RzUxUgaC1SO=s800', this)" onmouseenter="setMainImage('main-maria', 'https://lh3.googleusercontent.com/d/1dWoH5ZL9_MJtmyzJ1lns6RzUxUgaC1SO=s800', this)" class="thumb-btn w-12 h-12 rounded-lg border border-gold/30 hover:border-gold overflow-hidden bg-black/40 focus:outline-none transition transform hover:scale-110">
+                            <img src="https://lh3.googleusercontent.com/d/1dWoH5ZL9_MJtmyzJ1lns6RzUxUgaC1SO=s800" alt="Maria 2" class="w-full h-full object-cover">
+                        </button>
+                        <button onclick="setMainImage('main-maria', 'https://lh3.googleusercontent.com/d/1O5S6tC8tLHr2Seg4tIW8hgeq2TsjRg5-=s800', this)" onmouseenter="setMainImage('main-maria', 'https://lh3.googleusercontent.com/d/1O5S6tC8tLHr2Seg4tIW8hgeq2TsjRg5-=s800', this)" class="thumb-btn w-12 h-12 rounded-lg border border-gold/30 hover:border-gold overflow-hidden bg-black/40 focus:outline-none transition transform hover:scale-110">
+                            <img src="https://lh3.googleusercontent.com/d/1O5S6tC8tLHr2Seg4tIW8hgeq2TsjRg5-=s800" alt="Maria 3" class="w-full h-full object-cover">
+                        </button>
+                        <button onclick="setMainImage('main-maria', 'https://lh3.googleusercontent.com/d/1tdWVkGyrNhWwRmkZf0XfvovvN3MEp13n=s800', this)" onmouseenter="setMainImage('main-maria', 'https://lh3.googleusercontent.com/d/1tdWVkGyrNhWwRmkZf0XfvovvN3MEp13n=s800', this)" class="thumb-btn w-12 h-12 rounded-lg border border-gold/30 hover:border-gold overflow-hidden bg-black/40 focus:outline-none transition transform hover:scale-110">
+                            <img src="https://lh3.googleusercontent.com/d/1tdWVkGyrNhWwRmkZf0XfvovvN3MEp13n=s800" alt="Maria 4" class="w-full h-full object-cover">
+                        </button>
+                    </div>
+
+                    <!-- Conteúdo Descritivo -->
                     <div class="p-6">
-                        <h3 class="font-cinzel font-bold text-white text-lg mb-2">Sagrado Coração Nossa Senhora</h3>
-                        <p class="text-gray-300 text-xs mb-4 leading-relaxed">Imagem devocional delicada com acabamento refinado para abençoar o seu ambiente.</p>
+                        <h3 class="font-cinzel font-bold text-white text-lg mb-2">Imaculado Coração de Maria</h3>
+                        <p class="text-gray-300 text-xs mb-4 leading-relaxed">
+                            Imagem marianística delicada com pintura artística. <strong>Equipada com reprodução de áudio da oração da Consagração a Nossa Senhora</strong>, trazendo bênção e paz ao seu lar.
+                        </p>
                         <div class="text-gold font-bold text-sm tracking-wider uppercase">Sob Encomenda</div>
                     </div>
                 </div>
                 <div class="p-6 pt-0">
-                    <a href="https://wa.me/5544998594898?text=Olá!%20Gostaria%20de%20solicitar%20um%20orçamento%20para%20a%20estátua:%20Sagrado%20Coração%20Nossa%20Senhora." target="_blank" rel="noopener noreferrer" class="w-full bg-sacredbg/80 border border-gold/30 hover:bg-gold hover:text-sacredbg text-gold font-semibold py-3 rounded-xl flex items-center justify-center gap-2 transition text-xs uppercase tracking-wider">
+                    <a href="https://wa.me/5544998594898?text=Olá!%20Gostaria%20de%20solicitar%20um%20orçamento%20para%20a%20estátua%20com%20som:%20Imaculado%20Coração%20de%20Maria." target="_blank" rel="noopener noreferrer" class="w-full bg-sacredbg/80 border border-gold/30 hover:bg-gold hover:text-sacredbg text-gold font-semibold py-3 rounded-xl flex items-center justify-center gap-2 transition text-xs uppercase tracking-wider">
                         <i data-lucide="message-circle" class="w-4 h-4"></i> Solicitar Orçamento
                     </a>
                 </div>
@@ -293,7 +365,7 @@
     <!-- SEÇÃO: TERÇOS & ACESSÓRIOS -->
     <section id="tercos" class="max-w-7xl mx-auto px-4 py-16 w-full border-t border-gold/20 bg-sacredbg/50 backdrop-blur-md rounded-3xl my-8 shadow-2xl">
         <div class="text-center max-w-xl mx-auto mb-14">
-            <span class="text-gold text-xs font-bold uppercase tracking-widest">DeVOÇÃO E BELEZA</span>
+            <span class="text-gold text-xs font-bold uppercase tracking-widest">Devoção e Beleza</span>
             <h2 class="font-cinzel text-3xl md:text-4xl font-bold text-white mt-2">Terços & Acessórios</h2>
             <div class="w-16 h-0.5 bg-gold/50 mx-auto mt-4"></div>
             <p class="text-gray-300 text-xs md:text-sm mt-3">Acessórios sagrados exclusivos para acompanhar seus momentos de oração.</p>
@@ -301,13 +373,23 @@
 
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             
-            <!-- Item 1: Terços Artesanais -->
+            <!-- Item 1: Terços Artesanais (SEM IMAGEM) -->
             <div class="bg-sacredcard border border-gold/20 rounded-2xl overflow-hidden flex flex-col justify-between group sacred-glow transition duration-300">
                 <div>
-                    <div class="h-64 bg-black/30 overflow-hidden relative flex items-center justify-center p-2">
+                    <!-- CONTAINER DE MENSAGEM "EM BREVE DIVINAS NOVIDADES!" -->
+                    <div class="h-64 bg-gradient-to-b from-black/60 to-black/30 relative flex flex-col items-center justify-center p-6 text-center border-b border-gold/10 overflow-hidden">
                         <span class="absolute top-3 left-3 z-10 bg-gold text-sacredbg text-[10px] font-bold px-2.5 py-1 rounded uppercase tracking-wider shadow">Artesanal</span>
-                        <img src="https://images.unsplash.com/photo-1548625361-1607386d389e?auto=format&fit=crop&w=600&q=80" alt="Terços Artesanais" class="w-full h-full object-cover transition-all duration-500 hover:scale-105">
+                        
+                        <div class="p-3 rounded-full bg-gold/10 border border-gold/30 text-gold mb-3 animate-pulse">
+                            <i data-lucide="sparkles" class="w-8 h-8"></i>
+                        </div>
+                        
+                        <p class="font-cinzel text-gold text-base font-bold tracking-wider uppercase drop-shadow">
+                            Em breve divinas novidades!
+                        </p>
+                        <span class="text-gray-400 text-[11px] mt-1 font-light italic">Estamos preparando peças exclusivas</span>
                     </div>
+
                     <div class="p-6">
                         <h3 class="font-cinzel font-bold text-white text-lg mb-2">Terços Exclusivos</h3>
                         <p class="text-gray-300 text-xs mb-4 leading-relaxed">Terços confeccionados manualmente com materiais nobres, resistentes e de alto acabamento.</p>
@@ -321,13 +403,23 @@
                 </div>
             </div>
 
-            <!-- Item 2: Acessórios Devocionais -->
+            <!-- Item 2: Acessórios Devocionais (SEM IMAGEM) -->
             <div class="bg-sacredcard border border-gold/20 rounded-2xl overflow-hidden flex flex-col justify-between group sacred-glow transition duration-300">
                 <div>
-                    <div class="h-64 bg-black/30 overflow-hidden relative flex items-center justify-center p-2">
+                    <!-- CONTAINER DE MENSAGEM "EM BREVE DIVINAS NOVIDADES!" -->
+                    <div class="h-64 bg-gradient-to-b from-black/60 to-black/30 relative flex flex-col items-center justify-center p-6 text-center border-b border-gold/10 overflow-hidden">
                         <span class="absolute top-3 left-3 z-10 bg-gold text-sacredbg text-[10px] font-bold px-2.5 py-1 rounded uppercase tracking-wider shadow">Sagrado</span>
-                        <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=600&q=80" alt="Acessórios Devocionais" class="w-full h-full object-cover transition-all duration-500 hover:scale-105">
+                        
+                        <div class="p-3 rounded-full bg-gold/10 border border-gold/30 text-gold mb-3 animate-pulse">
+                            <i data-lucide="sparkles" class="w-8 h-8"></i>
+                        </div>
+                        
+                        <p class="font-cinzel text-gold text-base font-bold tracking-wider uppercase drop-shadow">
+                            Em breve divinas novidades!
+                        </p>
+                        <span class="text-gray-400 text-[11px] mt-1 font-light italic">Estamos preparando peças exclusivas</span>
                     </div>
+
                     <div class="p-6">
                         <h3 class="font-cinzel font-bold text-white text-lg mb-2">Acessórios Devocionais</h3>
                         <p class="text-gray-300 text-xs mb-4 leading-relaxed">Suportes, caixas para terço e ornamentos sacros personalizados para o seu espaço de oração.</p>
@@ -350,7 +442,7 @@
             <span class="text-gold text-xs font-bold uppercase tracking-widest">Tradição e Cuidado</span>
             <h2 class="font-cinzel text-3xl font-bold text-white mt-2 mb-6">Nossa Missão</h2>
             <p class="text-gray-100 text-base md:text-lg leading-relaxed font-light max-w-3xl mx-auto">
-                Cada imagem e ornamento produzido pela <strong class="text-gold font-normal">SagradaFé</strong> é tratado com absoluto respeito e reverência. Unimos a precisão da tecnologia 3D à sensibilidade do trabalho manual para entregar peças que alimentam a espiritualidade no conforto do seu lar. Realizamos entregas em <strong class="text-gold font-normal">Maringá e região</strong>.
+                Cada imagem e ornamento produzido pela <strong class="text-gold font-normal">SagradaFé</strong> é tratado com absoluto respeito e reverência. Unimos a precisão da tecnologia 3D e a interatividade dos módulos de som à sensibilidade do trabalho manual para entregar peças que alimentam a espiritualidade no conforto do seu lar. Realizamos entregas em <strong class="text-gold font-normal">Maringá e região</strong>.
             </p>
         </div>
     </section>
@@ -365,8 +457,8 @@
             </div>
             
             <div class="flex items-center gap-4">
-                <a href="https://instagram.com/sagradafe" target="_blank" rel="noopener noreferrer" title="Instagram" class="bg-sacredcard border border-gold/30 p-3 rounded-full text-gold hover:bg-gold hover:text-sacredbg transition transform hover:scale-110">
-                    <i data-lucide="instagram" class="w-5 h-5"></i>
+                <a href="https://www.instagram.com/sagradafe.mga/?utm_source=ig_web_button_share_sheet" target="_blank" rel="noopener noreferrer" title="Instagram" class="bg-sacredcard border border-gold/30 p-2 rounded-full hover:bg-gold transition transform hover:scale-110 flex items-center justify-center w-11 h-11">
+                    <img src="https://lh3.googleusercontent.com/d/1C8cS3oPfe9NAfT0U4rp4Qgc_vBvdeiod=s800" alt="Instagram" class="w-6 h-6 object-contain">
                 </a>
                 <a href="https://facebook.com/sagradafe" target="_blank" rel="noopener noreferrer" title="Facebook" class="bg-sacredcard border border-gold/30 p-3 rounded-full text-gold hover:bg-gold hover:text-sacredbg transition transform hover:scale-110">
                     <i data-lucide="facebook" class="w-5 h-5"></i>
@@ -378,10 +470,11 @@
         </div>
     </footer>
 
-    <!-- Script de Inicialização, Preloader, Troca de Links e Efeito de Fagulhas do Mouse -->
+    <!-- SCRIPTS -->
     <script>
         lucide.createIcons();
 
+        // Esconder Preloader
         window.addEventListener('load', () => {
             setTimeout(() => {
                 const preloader = document.getElementById('preloader');
@@ -392,19 +485,26 @@
             }, 1200);
         });
 
-        document.querySelectorAll('.img-troca-link').forEach(img => {
-            const linkNormal = img.getAttribute('data-normal');
-            const linkAlternativo = img.getAttribute('data-alt');
-
-            img.addEventListener('mouseenter', () => {
-                img.src = linkAlternativo;
+        // Função para Trocar a Imagem Principal
+        function setMainImage(mainImgId, newSrc, thumbElement) {
+            const mainImg = document.getElementById(mainImgId);
+            if (mainImg) {
+                mainImg.src = newSrc;
+            }
+            
+            // Destacar botão ativo
+            const parent = thumbElement.parentElement;
+            const buttons = parent.querySelectorAll('.thumb-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('active-thumb', 'border-2', 'border-gold');
+                btn.classList.add('border', 'border-gold/30');
             });
 
-            img.addEventListener('mouseleave', () => {
-                img.src = linkNormal;
-            });
-        });
+            thumbElement.classList.add('active-thumb', 'border-2', 'border-gold');
+            thumbElement.classList.remove('border-gold/30');
+        }
 
+        // Efeito de Fagulhas Douradas no Cursor
         const canvas = document.getElementById('cursor-canvas');
         const ctx = canvas.getContext('2d');
         let width = canvas.width = window.innerWidth;
